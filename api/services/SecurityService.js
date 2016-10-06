@@ -2,8 +2,8 @@
  * Created by nexon on 06/10/16.
  */
 
-var bCrypt = requires('bcrypt-nodejs');
-var jwt = requires('jsonwebtoken');
+var bCrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
 
 module.exports = {
     hashPassword: function (user) {
