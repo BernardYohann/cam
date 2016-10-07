@@ -7,8 +7,8 @@
 
 
 var passport        = require('passport');
-var lolcalStrategy  = require('passport-local');
-var jwtStrategy     = require('passport-jwt');
+var LocalStrategy  = require('passport-local').Strategy;
+var JwtStrategy     = require('passport-jwt').Strategy;
 
 var EXPIRES = 60*24;
 var SECRET = "ksoihenopitrqkpdijaqdkjgdjskudgdjsospztehc";
@@ -29,42 +29,50 @@ var JWT_STRATEGY_CONFIG = {
     audience: ''
 };
 
-function onLocalStrategyAuth(email, password, next){
-    User.find({email: email})
-        .exec(function(error, user){
-            if(error) return next(error, false, {});
-            if(!user) return next(null, false,{
-                code: 'E_USER_NOT_FOUND',
-                message: 'email or password is wrong'
-            });
 
-            if(SecurityService.comparePassword(password, user)){
-                return next(null, user, {
-                    code: 'E_USER_PASSWORD_MISMATH',
+
+
+
+passport.use(new LocalStrategy(
+    function onLocalStrategyAuth(email, password, next){
+        User.find({email: email})
+            .exec(function(error, user){
+                if(error) return next(error, false, {});
+                if(!user) return next(null, false,{
+                    code: 'E_USER_NOT_FOUND',
                     message: 'email or password is wrong'
                 });
-            }
 
-        });
-    return next(null, user, {});
-}
+                if(SecurityService.comparePassword(password, user)){
+                    return next(null, user, {
+                        code: 'E_USER_PASSWORD_MISMATH',
+                        message: 'email or password is wrong'
+                    });
+                }
 
-function onJwtStrategyAuth(payload, next){
-    var user = payload.user;
-    return next(null, user, {});
+            });
+        return next(null, user, {});
+    }
+));
 
-}
+passport.use(new LocalStrategy(
+    function onJwtStrategyAuth(payload, next){
+        var user = payload.user;
+        return next(null, user, {});
 
-passport.use(
-    new LocalStrategy(LOCAL_STRATEGY_CONFIG, onLocalStrategyAuth()));
+    }
+));
 
-passport.use(
-    new JwtStrategy(JWT_STRATEGY_CONFIG, onJwtStrategyAuth()));
+
+// passport.use(   new LocalStrategy(LOCAL_STRATEGY_CONFIG, onLocalStrategyAuth()));
+//
+// passport.use(
+//     new JwtStrategy(JWT_STRATEGY_CONFIG, onJwtStrategyAuth()));
 
 module.exports.jwtSettings = {
     expires: EXPIRES,
     algo: ALGO,
-    secret: secret
+    secret: SECRET
 };
 
 /**
