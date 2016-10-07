@@ -33,7 +33,7 @@ var JWT_STRATEGY_CONFIG = {
 
 
 function onLocalStrategyAuth(email, password, next) {
-    Users.find({email: email})
+    User.find({email: email})
         .exec(function (error, user) {
             if (error) return next(error, false, {});
             if (!user) return next(null, false, {

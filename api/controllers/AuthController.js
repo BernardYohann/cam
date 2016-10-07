@@ -25,7 +25,7 @@ module.exports = {
 
     },
     signup: function(req, res){
-        Users.create(_.omit(req.allParams(), 'id'))
+        User.create(_.omit(req.allParams(), 'id'))
             .then(function(user){
                 return {
                     user: user,
