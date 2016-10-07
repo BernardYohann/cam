@@ -66,7 +66,7 @@ passport.use(new JwtStrategy(JWT_STRATEGY_CONFIG, onJwtStrategyAuth));
 module.exports.jwtSettings = {
     expiresIn: EXPIRES_IN,
     algo: ALGO,
-    secret: SECRET
+    secret: SECRET,
 };
 
 /**
