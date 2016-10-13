@@ -3,7 +3,7 @@
  */
 
 
-modul.exports.autoreload ={
+modul.exports.autoreload = {
     active: true,
     usePolling: false,
     dirs: [

@@ -20,11 +20,11 @@ function onPassportAuth(req, res, error, user, info) {
 }
 
 module.exports = {
-    signin: function (req, res) {
+    login: function (req, res) {
         passport.authenticate('local', onPassportAuth.bind(this, req, res))(req, res);
 
     },
-    signup: function (req, res) {
+    register: function (req, res) {
         User.create(_.omit(req.allParams(), 'id'))
             .then(function (user) {
                 return {

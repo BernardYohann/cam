@@ -7,8 +7,21 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
+        user: {
+            model: 'user'
+        },
+        camera: {
+            model: 'camera'
+        },
+        role: {
+            model: 'role'
+        },
+        toJson: function(){
+            var obj = this.toObject();
+            return obj;
+        }
+    }
 
-  }
 };
 
