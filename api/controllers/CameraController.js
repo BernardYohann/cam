@@ -9,7 +9,20 @@ module.exports = {
 
 	
      //CRUD methods
-     
+    getCamera: function (req, res) {
+        var identifier = req.param('uid');
+        Camera.find({
+            uid: identifier
+        }).exec();
+
+    },
+
+    getUserCameras: function (req, res) {
+        Camera.find({
+          where owner
+        }).exec();
+    },
+
 
      //Actions methods
      turnLeft: function(value, next){

@@ -36,15 +36,15 @@ module.exports = {
             .catch(res.serverError);
 
     }
-    ,
-    getClient: function (req, res) {
-        Client.findOne({
-            email: 'tot@g.fr'
-        }).exec(function (req, res) {
+    // ,
+    // getClient: function (req, res) {
+    //     Client.findOne({
+    //         email: 'tot@g.fr'
+    //     }).exec(function (req, res) {
 
-        })
+    //     })
 
-    }
+    // }
     // ,
     // getClientWithOrder: function (req, res) {
     //     Client.findOne({
