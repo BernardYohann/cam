@@ -19,7 +19,6 @@ module.exports = {
 
     getUserCameras: function (req, res) {
         Camera.find({
-          where owner
         }).exec();
     },
 
