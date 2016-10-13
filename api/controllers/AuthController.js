@@ -38,3 +38,36 @@ module.exports = {
     }
 };
 
+/*
+module.exports = {
+
+    getClient : function(req,res){
+        Client.findOne({
+            email : 'toto@gmail.com'
+        }).exec(function (err, user){
+
+        })
+    },
+
+
+    getClientWithOrder : function(req,res){
+        Client.findOne({
+            email : 'toto@gmail.com'
+        })
+        .populate('orders') //pour recuperer les associations liées à mon objet
+        .exec(function(err, user){
+            console.log(user.email)
+            console.log(user.orders[0])
+        })
+    },
+
+    getClientAdvanced : function(req, res){
+        var identifier = req.param('identifier') //identifier est une chaine de caractere (issue d'un champ de mon formualire
+        Client.find( {where : {name : 'identifier'}})
+        .exec()
+
+        Client.find({name:identifier})
+    }
+};
+*/
+
