@@ -7,8 +7,45 @@
 
 module.exports = {
 
+  //members
   attributes: {
+      uid: {
+        type: 'string',
+        unique: true,
+        required: true
+      },
+      name: {
+        type: 'string',
+        unique: true,
+        required: true
+      },
+      powerup: {
+        type: 'boolean'
+      },
+      socket: {
+        type: 'string'
+      },
+      owner: {
+        type: 'User',
+        via: User
+      },
 
+     //properties 
+     turnLeft: function(value, next){
+       //TODO
+       return next();
+     },
+     turnRight: function(value, next){
+       //TODO
+       return next();
+     },
+     switchOn: function(value, next){
+         //TODO updateCameraState(1);
+     },
+     switchOff: function(value, next){
+         //TODO updateCameraState(0);
+     } 
   }
+
 };
 
