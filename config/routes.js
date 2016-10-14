@@ -40,7 +40,7 @@ module.exports.routes = {
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
   'get /logout' : 'UserController.logout',
-  //HOME
+  //USER
   'get /dashboard' : 'UserController.dashboard',
   'get /profile' : 'UserController.profile',
   //CAMERA
