@@ -18,6 +18,7 @@ module.exports = {
 		}).exec();
 	},
 	getAllRole: function(req, res){
+		var identifier = eq.param('id');
 		role.find({
 			where ({
 				name: id

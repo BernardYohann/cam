@@ -25,6 +25,7 @@ module.exports = {
 
     },
     register: function (req, res) {
+        console.log(req);
         User.create(_.omit(req.allParams(), 'id'))
             .then(function (user) {
                 return {
