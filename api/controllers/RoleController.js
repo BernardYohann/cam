@@ -8,18 +8,19 @@
 var passport = require("passport");
 
 module.exports = {
-	var identifier = eq.param('id');
 
 	getRole: function(req, res){
+		var identifier = eq.param('id');
 		role.findOne({
-			where {
+			where: {
 				name: id
 			}
 		}).exec();
 	},
 	getAllRole: function(req, res){
+		var identifier = eq.param('id');
 		role.find({
-			where {
+			where: {
 				name: id
 			}
 		}).exec();
