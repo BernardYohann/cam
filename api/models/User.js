@@ -9,9 +9,6 @@
 
 module.exports = {
     attributes: {
-        username: {
-            type: 'string'
-        },
         firstname:{
             type: 'string'
         },
@@ -27,6 +24,12 @@ module.exports = {
         userCameraRoles: {
             collection: 'usercamerarole',
             via: 'user'
+        },
+        createdAt: {
+            type: 'datetime'
+        },
+        updateAt: {
+            type: 'datetime'
         },
         toJson: function(){
             var obj = this.toObject();
@@ -44,4 +47,3 @@ module.exports = {
         return next();
     }
 };
-
