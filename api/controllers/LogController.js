@@ -6,6 +6,16 @@
  */
 
 module.exports = {
-	
+
+	log: function(req, res){
+        return res.ok({
+            logs : Log.find({
+                camera_id : req.param('camera_id')
+            }).populate('user')
+            .exec()
+        })
+    }
+    
 };
+
 
