@@ -8,7 +8,22 @@
 module.exports = {
 
   attributes: {
-
-  }
+        date : {
+            type : 'datetime',
+        },
+        camera_id : {
+            type : 'int'
+        },
+        user : {
+            type : 'User'
+        },
+        event : {
+            type : 'string'
+        },
+        toJson: function(){
+            var obj = this.toObject();
+            return obj;
+         }
+    }
 };
 
