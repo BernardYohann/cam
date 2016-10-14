@@ -19,7 +19,7 @@ module.exports = {
         unique: true,
         required: true
       },
-      powerup: {
+      switchOn: {
         type: 'boolean'
       },
       socket: {
