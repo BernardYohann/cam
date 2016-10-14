@@ -8,7 +8,27 @@
 module.exports = {
 
   attributes: {
-
+  	name: {
+  		type: 'string'
+  	},
+  	view: {
+  		type: 'boolean'
+  	},
+  	turn: {
+  		type: 'boolean'
+  	},
+  	switch: {
+  		type: 'boolean'
+  	},
+  	manage: {
+  		type: 'boolean'
+  	},
+    user: {
+      model: 'user'
+    }
+  	toJson: function(){
+  		var obj = this.toObject();
+  		return obj;
+  	}
   }
 };
-
