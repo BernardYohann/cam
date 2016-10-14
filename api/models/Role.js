@@ -25,7 +25,7 @@ module.exports = {
   	},
     user: {
       model: 'user'
-    }
+    },
   	toJson: function(){
   		var obj = this.toObject();
   		return obj;
