@@ -35,11 +35,19 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+
+  //AUTH
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
+  'get /logout' : 'UserController.logout',
+  //HOME
   'get /dashboard' : 'UserController.dashboard',
   'get /profile' : 'UserController.profile',
-  'get /logout' : 'UserController.logout'
+  //CAMERA
+  'get /camera' : 'CameraController.get',
+  'get /usercamera' : 'CameraController.getUserCameras',
+  'get /camera/add' : 'CameraController.add',
+  'get /camera/delete' : 'CameraController.delete'
 
 
   /***************************************************************************

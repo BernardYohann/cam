@@ -10,25 +10,28 @@ module.exports = {
      //CRUD methods
     get: function (req, res) {
         var identifier = req.param('uid');
-        Camera.find({
+        return res.ok(Camera.find({
             uid: identifier
-        }).exec();
+        }).exec());
 
     },
 
-    getUserCameras: function (req, user) {
-        Camera.find({
-            owner: user.id
+    getUserCameras: function (req, res) {
+        return res.ok(Camera.find({
+            owner: req.param('user')
         })
-        .exec();
+        .exec());
     },
 
-    add: function(){
-        Camera.create();
+    add: function(req, res){
+        return res.ok(Camera.create({
+            uid: '1',
+            name: 'test'
+        }));
     },
 
-    delete: function(){
-        Camera.delete();
+    delete: function(req, res){
+        return res.ok(Camera.delete());
     },
 
 

@@ -21,6 +21,7 @@ module.exports = {
         });
     },
     logout : function(req, res){
+        //TODO deconnexion
         return res.ok({
             user: req.user
         });

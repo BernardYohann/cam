@@ -27,7 +27,11 @@ module.exports = {
       },
       owner: {
         model: 'user'
-      } 
+      },
+      userCameraRoles: {
+          collection: 'usercamerarole',
+          via: 'camera'
+      }
   }
 };
 

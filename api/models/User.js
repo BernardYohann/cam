@@ -26,6 +26,10 @@ module.exports = {
         password: {
             type: 'string'
         },
+        userCameraRoles: {
+            collection: 'usercamerarole',
+            via: 'user'
+        },
         toJson: function(){
             var obj = this.toObject();
             delete obj.password;
