@@ -12,17 +12,17 @@ module.exports = {
 	getRole: function(req, res){
 		var identifier = eq.param('id');
 		role.findOne({
-			where ({
-				name: identifier
-			})
+			where: {
+				name: id
+			}
 		}).exec();
 	},
 	getAllRole: function(req, res){
 		var identifier = eq.param('id');
 		role.find({
-			where ({
+			where: {
 				name: id
-			})
+			}
 		}).exec();
 	}
 };
