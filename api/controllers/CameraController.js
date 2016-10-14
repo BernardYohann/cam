@@ -6,10 +6,9 @@
  */
 
 module.exports = {
-
 	
      //CRUD methods
-    getCamera: function (req, res) {
+    get: function (req, res) {
         var identifier = req.param('uid');
         Camera.find({
             uid: identifier
@@ -17,9 +16,19 @@ module.exports = {
 
     },
 
-    getUserCameras: function (req, res) {
+    getUserCameras: function (req, user) {
         Camera.find({
-        }).exec();
+            owner: user.id
+        })
+        .exec();
+    },
+
+    add: function(){
+        Camera.create();
+    },
+
+    delete: function(){
+        Camera.delete();
     },
 
 
@@ -33,10 +42,10 @@ module.exports = {
        return next();
      },
      switchOn: function(value, next){
-         //TODO updateCameraState(camedraId, 1);
+         Camera.update({switchOn: 1});
      },
      switchOff: function(value, next){
-         //TODO updateCameraState(cameraId, 0);
+         Camera.update({switchOn: 0});
      }
 };
 
