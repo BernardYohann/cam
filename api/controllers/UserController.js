@@ -5,6 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 module.exports = {
     dashboard: function (req,res)
     {
@@ -15,15 +16,36 @@ module.exports = {
             }
         )
     },
-    profile : function(req, res){
+
+    profile: function (req, res) {
         return res.ok({
             user: req.user
         });
     },
-    logout : function(req, res){
+
+    logout: function (req, res) {
         return res.ok({
             user: req.user
         });
-    }
-};
+    },
 
+    getAllUser: function (req, res) {
+        return res.send('');
+    },
+
+    getByIdUser: function (req, res) {
+        return res.send('');
+    },
+
+    addUser: function (req, res) {
+        return res.send('');
+    },
+
+    updateUser: function (req, res) {
+        return res.send('');
+    },
+
+    deleteUser: function (req, res) {
+        return res.send('');
+    },
+};
