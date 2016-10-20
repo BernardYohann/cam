@@ -11,7 +11,11 @@ module.exports = {
     {
         return res.ok(
             {
-                cameras: Camera.find({where: {user : req.user}}),
+                cameras: Camera.find({
+                    where: {
+                        user : req.user
+                    }
+                }),
                 user: req.user
             }
         )
