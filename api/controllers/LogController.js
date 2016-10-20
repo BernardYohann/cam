@@ -14,7 +14,8 @@ module.exports = {
             }).populate('user')
             .exec()
         })
-    }
+    },
+
     
 };
 

@@ -9,17 +9,20 @@
 module.exports = {
     dashboard: function (req,res)
     {
-        console.log('ici');
-        return res.ok(
-            {
-                // cameras: Camera.find({
-                //     where: {
-                //         user : req.user
-                //     }
-                // }),
-                user: req.user
-            }
-        )
+        User.findOne({token: req.token})
+            .exec(function (error, user) {
+
+                return res.ok(
+                    {
+                        // cameras: Camera.find({
+                        //     where: {
+                        //         user : req.user
+                        //     }
+                        // }),
+                        user: req.user
+                    }
+                )
+            });
     },
 
     profile: function (req, res) {
