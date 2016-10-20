@@ -44,9 +44,9 @@ module.exports.routes = {
   'get /dashboard' : 'UserController.dashboard',
   'get /profile' : 'UserController.profile',
   //CAMERA
-  'get /camera' : 'CameraController.get',
+  'get /camera/:uid' : 'CameraController.getCameraByUid',
   'get /usercamera' : 'CameraController.getUserCameras',
-  'get /camera/add' : 'CameraController.add',
+  'post /camera/add' : 'CameraController.addCamera',
   'get /camera/delete' : 'CameraController.delete'
 
 

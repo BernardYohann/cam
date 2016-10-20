@@ -7,14 +7,19 @@
 
 module.exports = {
 	
-     //CRUD methods
-    get: function (req, res) {
-        var identifier = req.param('uid');
-        return res.ok(Camera.find({
-            uid: identifier
-        }).exec());
+    ///CRUD methods
 
+    // Récupérer une caméra à partir de son uid GET /camera/uid
+    getCameraByUid: function (req, res) {
+        var identifier = req.param('uid');
+        Camera.findOne({
+            uid: identifier
+        }).exec(function (err, getCamera) {
+            if (err) return res.serverError({ "state": 'Error when trying to get a camera by uid', "error": err });
+            return res.ok(getCamera);
+        });
     },
+
 
     getUserCameras: function (req, res) {
         return res.ok(Camera.find({
@@ -23,11 +28,21 @@ module.exports = {
         .exec());
     },
 
-    add: function(req, res){
-        return res.ok(Camera.create({
-            uid: '1',
-            name: 'test'
-        }));
+    // Créer une caméra avec un name et uid en parametre POST /camera/add
+    addCamera : function (req, res) {  
+        var name = req.param('name');
+        var uid = req.param('uid');
+
+        if (!name || !uid) return res.serverError({ "state": "Parameters error" }); 
+
+        Camera.create({
+            name: name,
+            uid: uid,
+            state: 0
+        }).exec(function (err, cameraCreated) {
+            if (err) return res.serverError({ "state": 'Error when trying add connected object on database', "error": err });
+            return res.ok(cameraCreated);
+        });
     },
 
     delete: function(req, res){
