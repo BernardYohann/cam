@@ -37,8 +37,15 @@ module.exports = {
         });
     },
 
-    delete: function(req, res){
-        return res.ok(Camera.delete());
+    //Supprime une camera   /POST /camera/delete
+    deleteCamera : function(req, res){
+        var id = req.param('id')
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        Camera.destroy(id = id).exec(function (err, cameraDestroyed) {
+            if (err) return res.serverError({ "state": 'Error when trying to delete this camera on database', "error": err });
+            return res.ok();
+        });
     },
 
 
