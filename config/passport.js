@@ -33,23 +33,23 @@ var JWT_STRATEGY_CONFIG = {
 
 
 function onLocalStrategyAuth(email, password, next) {
-    User.find({email: email})
+    User.findOne({email: email})
         .exec(function (error, user) {
             if (error) return next(error, false, {});
-            if (!user) return next(null, false, {
+            if (!user) return next({
                 code: 'E_USER_NOT_FOUND',
                 message: 'email or password is wrong'
-            });
+            }, false, {} );
 
-            if (SecurityService.comparePassword(password, user)) {
+            if (!SecurityService.comparePassword(password, user)) {
                 return next(null, user, {
                     code: 'E_USER_PASSWORD_MISMATH',
                     message: 'email or password is wrong'
                 });
             }
-
+            return next(null, user, {});
         });
-    return next(null, user, {});
+    
 }
 
 function onJwtStrategyAuth(payload, next) {
