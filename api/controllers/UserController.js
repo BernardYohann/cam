@@ -7,32 +7,9 @@
 
 
 module.exports = {
-    dashboard: function (req,res)
-    {
-        User.findOne({token: req.token})
-            .exec(function (error, user) {
-
-                return res.ok(
-                    {
-                        // cameras: Camera.find({
-                        //     where: {
-                        //         user : req.user
-                        //     }
-                        // }),
-                        user: req.user
-                    }
-                )
-            });
-    },
-
-    profile: function (req, res) {
-        return res.ok({
-            user: req.user
-        });
-    },
 
     logout: function (req, res) {
-    //TODO deconnexion
+        //TODO deconnexion
         return res.ok({
             user: req.user
         });

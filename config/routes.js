@@ -40,9 +40,6 @@ module.exports.routes = {
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
   'get /logout' : 'UserController.logout',
-  //USER
-  'get /dashboard' : 'UserController.dashboard',
-  'get /profile' : 'UserController.profile',
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraByUid',
   'post /camera/add' : 'CameraController.addCamera',
