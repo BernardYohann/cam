@@ -8,8 +8,11 @@
 var passport = require('passport');
 
 function onPassportAuth(req, res, error, user, info) {
+
     if (error) return res.serverError(error);
-    if (!user) return res.unauthorized(null, info);
+    
+    if (!user) return res.unauthorized(error, info);
+
 
     return res.ok(
         {
@@ -25,7 +28,6 @@ module.exports = {
 
     },
     register: function (req, res) {
-        console.log(req);
         User.create(_.omit(req.allParams(), 'id'))
             .then(function (user) {
                 return {
