@@ -11,21 +11,13 @@ module.exports = {
 
     // Récupérer une caméra à partir de son uid GET /camera/uid
     getCameraByUid: function (req, res) {
-        var identifier = req.param('uid');
+        var identifier = req.param('id');
         Camera.findOne({
             uid: identifier
         }).exec(function (err, getCamera) {
-            if (err) return res.serverError({ "state": 'Error when trying to get a camera by uid', "error": err });
+            if (err) return res.serverError({ "state": 'Error when trying to get a camera by id', "error": err });
             return res.ok(getCamera);
         });
-    },
-
-
-    getUserCameras: function (req, res) {
-        return res.ok(Camera.find({
-            owner: req.param('user')
-        })
-        .exec());
     },
 
     // Créer une caméra avec un name et uid en parametre POST /camera/add
@@ -45,8 +37,15 @@ module.exports = {
         });
     },
 
-    delete: function(req, res){
-        return res.ok(Camera.delete());
+    //Supprime une camera   /POST /camera/delete
+    deleteCamera : function(req, res){
+        var id = req.param('id')
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        Camera.destroy(id = id).exec(function (err, cameraDestroyed) {
+            if (err) return res.serverError({ "state": 'Error when trying to delete this camera on database', "error": err });
+            return res.ok();
+        });
     },
 
 
