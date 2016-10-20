@@ -9,7 +9,7 @@ module.exports = {
 	
     // Récupérer les utilisateurs qui ont les droits sur une caméra et leurs roles GET /camera/:id/users
     getCameraUsers: function (req, res) {
-        var camera = req.param('cameraId');
+        var camera = req.param('cameraid');
         UserCameraRole.find({
             where: {
                 camera : camera
@@ -23,7 +23,7 @@ module.exports = {
 
     //Récupérer les caméras sur lequel un utilisateur à les droits GET /cameras
     getUserCameras: function (req, res) {
-        var user = req.param('user');
+        var user = req.param('userid');
         UserCameraRole.find({
             where: {
                 user: user
