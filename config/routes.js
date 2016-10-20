@@ -46,11 +46,12 @@ module.exports.routes = {
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraByUid',
   'post /camera/add' : 'CameraController.addCamera',
-  'get /camera/delete' : 'CameraController.delete',
+  'post /camera/delete' : 'CameraController.deleteCamera',
   //USERCAMERAROLE
   'get /camera/:id/users' : 'UserCameraRoleController.getCameraUsers',
   'get /cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
+  'post /usercamerarole/delete' : 'UserCameraRoleController.deleteUserCameraRole',
 
 
   /***************************************************************************

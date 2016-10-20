@@ -35,7 +35,7 @@ module.exports = {
         });
     },
 
-    //Créer un userCameraRole POST /usercamerarole
+    //Créer un userCameraRole POST /usercamerarole/add
     addUserCameraRole: function (req, res) {  
         var userId = req.param('user');
         var cameraId = req.param('camera');
@@ -51,7 +51,19 @@ module.exports = {
             if (err) return res.serverError({ "state": 'Error when trying add a new user camera role', "error": err });
             return res.ok(userCameraRoleCreated);
         });
-    }
+    },
+
+    //Supprime un UserCameraRole   POST /usercamerarole/delete
+    deleteUserCameraRole: function(req, res){
+        var id = req.param('id')
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        UserCameraRole.destroy(id = id).exec(function (err, ucrDestroyed) {
+            if (err) return res.serverError({ "state": 'Error when trying to delete this UserCameraRole on database', "error": err });
+            return res.ok();
+        });
+
+    },
 
 
 };
