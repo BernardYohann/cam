@@ -8,23 +8,23 @@
 var passport = require("passport");
 
 module.exports = {
-
-	getRole: function(req, res){
-		var identifier = eq.param('id');
-		role.findOne({
-			where: {
-				name: id
-			}
-		}).exec();
-	},
-	getAllRole: function(req, res){
-		var identifier = eq.param('id');
-		role.find({
-			where: {
-				name: id
-			}
-		}).exec();
-	}
 	
+	getAllRoles: function(req, res){
+		Role.find().exec(function(err, getRoles){
+			return res.ok(getRoles)
+		});
+	},
+
+	addRole: function(req, res){
+
+	},
+
+	updateRole: function(req, res){
+
+	},
+
+	deleteRole: function(req, res){
+
+	}
 };
 

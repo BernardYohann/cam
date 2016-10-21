@@ -35,21 +35,33 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-
   //AUTH
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
   'get /logout' : 'UserController.logout',
+  //USER
+
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraByUid',
   'post /camera/add' : 'CameraController.addCamera',
-  'post /camera/delete' : 'CameraController.deleteCamera',
+  'put /camera/update/:id' : 'CameraController.addCamera',
+  'delete /camera/delete/:id' : 'CameraController.deleteCamera',
+  //CAMERA ACTIONS
+  'put /camera/switchon/:id' : 'CameraController.switchOn',
+  'put /camera/switchoff/:id' : 'CameraController.switchOff',
+  'put /camera/turnleft/:id' : 'CameraController.turnLeft',
+  'put /camera/turnright/:id' : 'CameraController.turnRight',
   //USERCAMERAROLE
-  'get /camera/:id/users' : 'UserCameraRoleController.getCameraUsers',
-  'get /cameras' : 'UserCameraRoleController.getUserCameras',
+  'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
+  'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
-  'post /usercamerarole/delete' : 'UserCameraRoleController.deleteUserCameraRole',
-
+  'put /usercamerarole/update/:id' : 'UserCameraRoleController.addUserCameraRole',
+  'delete /usercamerarole/delete/:id' : 'UserCameraRoleController.deleteUserCameraRole',
+  //ROLE
+  'get /role' : 'RoleController.getAllRoles',
+  'post /role/add' : 'RoleController.addRole',
+  'put /role/update/:id' : 'RoleController.updateRole',
+  'delete /role/delete/:id' : 'RoleController.deleteRole',
 
   /***************************************************************************
   *                                                                          *

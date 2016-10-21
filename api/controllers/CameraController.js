@@ -49,6 +49,25 @@ module.exports = {
     },
 
 
+    updateCameraInfos: function(req, res){
+        var id = req.param('id');
+        var newUid = req.param('uid');
+        var newName = req.param('name');
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        Camera.update(
+            {id: id}, 
+            {
+                uid: newUid,
+                name: newName
+            })
+        .exec(function (err, updatedCamera) {
+            if (err) return res.serverError({ "state": 'Error when trying to update the camera', "error": err });
+            return res.ok(updatedCamera);
+        });
+    },
+
+
      //Actions methods
      turnLeft: function(value, next){
        //TODO
@@ -59,10 +78,26 @@ module.exports = {
        return next();
      },
      switchOn: function(value, next){
-         Camera.update({switchOn: 1});
+         var id = req.param('id');
+         if (!id ) return res.serverError({ "state": "Missing id" }); 
+         Camera.update(
+             {id: id},
+             {switchOn: 1})
+        .exec(function (err, updatedCamera) {
+            if (err) return res.serverError({ "state": 'Error when trying to switch on the camera', "error": err });
+            return res.ok(updatedCamera);
+        });
      },
      switchOff: function(value, next){
-         Camera.update({switchOn: 0});
+         var id = req.param('id');
+         if (!id ) return res.serverError({ "state": "Missing id" }); 
+         Camera.update(
+             {id: id}, 
+             {switchOn: 0})
+        .exec(function (err, updatedCamera) {
+            if (err) return res.serverError({ "state": 'Error when trying to switch off the camera', "error": err });
+            return res.ok(updatedCamera);
+        });
      }
 };
 

@@ -11,21 +11,19 @@ module.exports = {
   	name: {
   		type: 'string'
   	},
-  	view: {
+  	canView: {
   		type: 'boolean'
   	},
-  	turn: {
+  	canTurn: {
   		type: 'boolean'
   	},
-  	switch: {
+  	canSwitch: {
   		type: 'boolean'
   	},
-  	manage: {
+  	canManage: {
   		type: 'boolean'
   	},
-    user: {
-      model: 'user'
-    },
+
   	toJson: function(){
   		var obj = this.toObject();
   		return obj;

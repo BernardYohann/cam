@@ -9,7 +9,7 @@ module.exports = {
 	
     // Récupérer les utilisateurs qui ont les droits sur une caméra et leurs roles GET /camera/:id/users
     getCameraUsers: function (req, res) {
-        var camera = req.param('cameraId');
+        var camera = req.param('cameraid');
         UserCameraRole.find({
             where: {
                 camera : camera
@@ -23,7 +23,7 @@ module.exports = {
 
     //Récupérer les caméras sur lequel un utilisateur à les droits GET /cameras
     getUserCameras: function (req, res) {
-        var user = req.param('user');
+        var user = req.param('userid');
         UserCameraRole.find({
             where: {
                 user: user
@@ -65,6 +65,26 @@ module.exports = {
 
     },
 
+    //Update un UserCameraRole POST /usercamerarole/update
+    updateUserCameraRole: function(req, res){
+        var id = req.param('id');
+        var newUser = req.param('user');
+        var newCamera = req.param('camera');
+        var newRole = req.param('role');
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        UserCameraRole.update(
+            {id: id}, 
+            {
+                user: newUser,
+                camera: newCamera,
+                role: newRole
+            })
+        .exec(function (err, updatedUcr) {
+            if (err) return res.serverError({ "state": 'Error when trying to update the UserCameraRole', "error": err });
+            return res.ok(updatedUcr);
+        });
+    },
 
 };
 
