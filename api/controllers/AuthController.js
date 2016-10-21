@@ -24,8 +24,8 @@ function onPassportAuth(req, res, error, user, info) {
 module.exports = {
     login: function (req, res) {
         passport.authenticate('local', onPassportAuth.bind(this, req, res))(req, res);
-
     },
+
     register: function (req, res) {
         User.create(_.omit(req.allParams(), 'id'))
             .then(function (user) {
@@ -36,61 +36,10 @@ module.exports = {
             })
             .then(res.created)
             .catch(res.serverError);
+    },
+
+    logout: function (req, res){
 
     }
-    // ,
-    // getClient: function (req, res) {
-    //     Client.findOne({
-    //         email: 'tot@g.fr'
-    //     }).exec(function (req, res) {
-
-    //     })
-
-    // }
-    // ,
-    // getClientWithOrder: function (req, res) {
-    //     Client.findOne({
-    //         email: 'tot@g.fr'
-    //     })
-    //         .populate('orders'),
-    //     .
-    //     exec(function (req, res) {
-    //
-    //     })
-    // },
-    // getClientAdvanced: function (req, res) {
-    //     var identifier = eq.param('identifier');
-    //     Client.find({
-    //         name: identifier
-    //     }).exec();
-    //
-    //     Client.findOne({
-    //         where: {
-    //             name: identifier
-    //         }
-    //     }).exec();
-    //
-    //     Client.findOne({
-    //         where: {
-    //             name: identifier,
-    //             ville: ville
-    //         },
-    //         limit: 20,
-    //         sort: 'name ASC'
-    //     }).exec();
-    //
-    //
-    //     Client.find({
-    //         where: {
-    //             'contains': 'gmail.com'
-    //         }
-    //     }).exec();
-    //
-    //     Client.find({
-    //         where: {
-    //             '!': 'admin.gmail.com'
-    //         }
-    //     }).exec();
-    // }
 };
 

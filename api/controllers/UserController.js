@@ -8,30 +8,58 @@
 
 module.exports = {
 
-    logout: function (req, res) {
-        //TODO deconnexion
-        return res.ok({
-            user: req.user
+    getAllUsers: function (req, res) {
+        User.find().exec(function (err, users) {
+            if (err) return res.serverError({ "state": 'Error when trying to users', "error": err });
+            return res.ok(users);
         });
     },
 
-    getAllUser: function (req, res) {
-        return res.send('');
-    },
+    getUserById: function (req, res) {
+        var identifier = req.param('id');
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
 
-    getByIdUser: function (req, res) {
-        return res.send('');
-    },
-
-    addUser: function (req, res) {
-        return res.send('');
+        User.findOne({
+            id: identifier
+        }).exec(function (err, user) {
+            if (err) return res.serverError({ "state": 'Error when trying to get a user by id', "error": err });
+            return res.ok(user);
+        });
     },
 
     updateUser: function (req, res) {
-        return res.send('');
+        var id = req.param('id');
+        var firstname = req.param('firstname');
+        var lastname = req.param('lastname');
+        var email = req.param('email');
+        var password = req.param('password');
+
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+        User.update(
+            {id: id}, 
+            {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+            })
+        .exec(function (err, updatedUser) {
+            if (err) return res.serverError({ "state": 'Error when trying to update the user', "error": err });
+            return res.ok(updatedUser);
+        });
     },
 
     deleteUser: function (req, res) {
-        return res.send('');
+        var id = req.param('id')
+        if (!id ) return res.serverError({ "state": "Missing id" }); 
+
+        User.destroy(id = id).exec(function (err, userDestroyed) {
+            if (err) return res.serverError({ "state": 'Error when trying to delete this user', "error": err });
+            return res.ok();
+        });
     },
+
+    // addUser: function (req, res) {
+    //     return res.send('');
+    // },
 };

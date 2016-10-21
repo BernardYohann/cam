@@ -10,10 +10,10 @@ module.exports = {
     ///CRUD methods
 
     // Récupérer une caméra à partir de son uid GET /camera/uid
-    getCameraByUid: function (req, res) {
+    getCameraById: function (req, res) {
         var identifier = req.param('id');
         Camera.findOne({
-            uid: identifier
+            id: identifier
         }).exec(function (err, getCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to get a camera by id', "error": err });
             return res.ok(getCamera);

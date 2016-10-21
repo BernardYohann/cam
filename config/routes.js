@@ -35,14 +35,18 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
+
   //AUTH
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
   'get /logout' : 'UserController.logout',
   //USER
-
+  'get /user' : 'UserController.getAllUsers',
+  'get /user/:id' : 'UserController.getUserById',
+  'put /user/update/:id' : 'UserController.updateUser',
+  'delete /user/delete/:id' : 'UserController.deleteUser',
   //CAMERA
-  'get /camera/:id' : 'CameraController.getCameraByUid',
+  'get /camera/:id' : 'CameraController.getCameraById',
   'post /camera/add' : 'CameraController.addCamera',
   'put /camera/update/:id' : 'CameraController.addCamera',
   'delete /camera/delete/:id' : 'CameraController.deleteCamera',
@@ -61,6 +65,7 @@ module.exports.routes = {
   'get /role' : 'RoleController.getAllRoles',
   'get /role/:id' : 'RoleController.getRoleById',
   'put /role/update/:id' : 'RoleController.updateRole',
+  //LOGS
 
   /***************************************************************************
   *                                                                          *
