@@ -20,8 +20,7 @@ module.exports = {
         required: true
       },
       switchOn: {
-        type: 'boolean',
-        //mettre à 0 par defaut
+        type: 'boolean'
       },
       socket: {
         type: 'string'

@@ -15,7 +15,7 @@ module.exports = {
             type : 'int'
         },
         user : {
-            type : 'User'
+            type : 'user'
         },
         event : {
             type : 'string'

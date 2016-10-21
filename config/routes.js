@@ -59,9 +59,8 @@ module.exports.routes = {
   'delete /usercamerarole/delete/:id' : 'UserCameraRoleController.deleteUserCameraRole',
   //ROLE
   'get /role' : 'RoleController.getAllRoles',
-  'post /role/add' : 'RoleController.addRole',
+  'get /role/:id' : 'RoleController.getRoleById',
   'put /role/update/:id' : 'RoleController.updateRole',
-  'delete /role/delete/:id' : 'RoleController.deleteRole',
 
   /***************************************************************************
   *                                                                          *

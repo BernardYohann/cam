@@ -14,7 +14,7 @@ module.exports = {
             where: {
                 camera : camera
             }
-        }).populate('user')
+        }).populate('user').populate('camera')
         .exec(function (err, getCameraUsers){
             if (err) return res.serverError({ "state": 'Error when trying to get users for this camera', "error": err });
             return res.ok(getCameraUsers);
@@ -28,7 +28,7 @@ module.exports = {
             where: {
                 user: user
             }
-        }).populate('camera')
+        }).populate('camera').populate('user')
         .exec(function (err, getUserCameras){
             if (err) return res.serverError({ "state": 'Error when trying to get cameras for this user', "error": err });
             return res.ok(getUserCameras);

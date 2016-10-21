@@ -30,14 +30,14 @@ module.exports = {
         Camera.create({
             name: name,
             uid: uid,
-            state: 0
+            switchOn: 0
         }).exec(function (err, cameraCreated) {
             if (err) return res.serverError({ "state": 'Error when trying add connected object on database', "error": err });
             return res.ok(cameraCreated);
         });
     },
 
-    //Supprime une camera   /POST /camera/delete
+    //Supprime une camera   /POST /camera/delete/:id
     deleteCamera : function(req, res){
         var id = req.param('id')
 
@@ -48,7 +48,7 @@ module.exports = {
         });
     },
 
-
+    //Update une camera /PUT /camera/update/:id
     updateCameraInfos: function(req, res){
         var id = req.param('id');
         var newUid = req.param('uid');
