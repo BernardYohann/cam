@@ -30,7 +30,7 @@ module.exports = {
         Camera.create({
             name: name,
             uid: uid,
-            switchOn: 0
+            switchOn: false
         }).exec(function (err, cameraCreated) {
             if (err) return res.serverError({ "state": 'Error when trying add connected object on database', "error": err });
             return res.ok(cameraCreated);
@@ -77,7 +77,7 @@ module.exports = {
        //TODO
        return next();
      },
-     switchOn: function(value, next){
+     switchOn: function(req, res){
          var id = req.param('id');
          if (!id ) return res.serverError({ "state": "Missing id" }); 
          Camera.update(
@@ -88,7 +88,7 @@ module.exports = {
             return res.ok(updatedCamera);
         });
      },
-     switchOff: function(value, next){
+     switchOff: function(req, res){
          var id = req.param('id');
          if (!id ) return res.serverError({ "state": "Missing id" }); 
          Camera.update(

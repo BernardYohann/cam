@@ -39,16 +39,16 @@ module.exports.routes = {
   //AUTH
   'post /login' : 'AuthController.login',
   'post /register' : 'AuthController.register',
-  'get /logout' : 'UserController.logout',
+  'get /logout' : 'AuthController.logout',
   //USER
   'get /user' : 'UserController.getAllUsers',
   'get /user/:id' : 'UserController.getUserById',
-  'put /user/update/:id' : 'UserController.updateUser',
+  'post /user/update' : 'UserController.updateUser',
   'delete /user/delete/:id' : 'UserController.deleteUser',
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraById',
   'post /camera/add' : 'CameraController.addCamera',
-  'put /camera/update/:id' : 'CameraController.addCamera',
+  'put /camera/update' : 'CameraController.addCamera',
   'delete /camera/delete/:id' : 'CameraController.deleteCamera',
   //CAMERA ACTIONS
   'put /camera/switchon/:id' : 'CameraController.switchOn',
@@ -64,8 +64,12 @@ module.exports.routes = {
   //ROLE
   'get /role' : 'RoleController.getAllRoles',
   'get /role/:id' : 'RoleController.getRoleById',
-  'put /role/update/:id' : 'RoleController.updateRole',
+  'put /role/update' : 'RoleController.updateRole',
   //LOGS
+  'get /log' : 'LogController.getAllLogs',
+  'get /log/camera/:id' : 'LogController.getLogByCameraId',
+  'get /log/user/:id' : 'LogController.getLogByUserId',
+  'post /log/add' : 'LogController.addLog',
 
   /***************************************************************************
   *                                                                          *

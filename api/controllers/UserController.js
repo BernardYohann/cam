@@ -10,23 +10,24 @@ module.exports = {
 
     getAllUsers: function (req, res) {
         User.find().exec(function (err, users) {
-            if (err) return res.serverError({ "state": 'Error when trying to users', "error": err });
+            if (err) return res.serverError({ "state": 'Error when trying to get the users', "error": err });
             return res.ok(users);
         });
     },
 
     getUserById: function (req, res) {
-        var identifier = req.param('id');
+        var id = req.param('id');
         if (!id ) return res.serverError({ "state": "Missing id" }); 
 
         User.findOne({
-            id: identifier
+            id: id
         }).exec(function (err, user) {
             if (err) return res.serverError({ "state": 'Error when trying to get a user by id', "error": err });
             return res.ok(user);
         });
     },
 
+//TODO voir pourquoi ça ne fonctionne pas
     updateUser: function (req, res) {
         var id = req.param('id');
         var firstname = req.param('firstname');

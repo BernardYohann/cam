@@ -8,14 +8,11 @@
 module.exports = {
 
   attributes: {
-        date : {
-            type : 'datetime',
-        },
-        camera_id : {
-            type : 'int'
+        camera : {
+            model : 'camera'
         },
         user : {
-            type : 'user'
+            model : 'user'
         },
         event : {
             type : 'string'
