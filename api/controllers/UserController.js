@@ -27,27 +27,41 @@ module.exports = {
         });
     },
 
-//TODO voir pourquoi ça ne fonctionne pas
+
     updateUser: function (req, res) {
         var id = req.param('id');
         var firstname = req.param('firstname');
         var lastname = req.param('lastname');
-        var email = req.param('email');
         var password = req.param('password');
 
         if (!id ) return res.serverError({ "state": "Missing id" }); 
-        User.update(
-            {id: id}, 
-            {
-                firstname: firstname,
-                lastname: lastname,
-                email: email,
-                password: password,
-            })
-        .exec(function (err, updatedUser) {
-            if (err) return res.serverError({ "state": 'Error when trying to update the user', "error": err });
-            return res.ok(updatedUser);
+        if (password == null)
+        {
+            User.update(
+                {id: id}, 
+                {
+                    firstname: firstname,
+                    lastname: lastname,
+                })
+            .exec(function (err, updatedUser) {
+                if (err) return res.serverError({ "state": 'Error when trying to update the user', "error": err });
+                return res.ok(updatedUser);
         });
+        }
+        else 
+        {
+            User.update(
+                {id: id}, 
+                {
+                    firstname: firstname,
+                    lastname: lastname,
+                    password: password,
+                })
+            .exec(function (err, updatedUser) {
+                if (err) return res.serverError({ "state": 'Error when trying to update the user', "error": err });
+                return res.ok(updatedUser);
+            });
+        }
     },
 
     deleteUser: function (req, res) {
