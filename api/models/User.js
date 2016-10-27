@@ -38,7 +38,6 @@ module.exports = {
         }
     },
     beforeUpdate: function(value, next){
-        if(!SecurityService.comparePassword(value, this))
             SecurityService.hashPassword(value);
         return next();
     },
