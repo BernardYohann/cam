@@ -43,7 +43,7 @@ module.exports.routes = {
   //USER
   'get /user' : 'UserController.getAllUsers',
   'get /user/:id' : 'UserController.getUserById',
-  'post /user/update' : 'UserController.updateUser',
+  'put /user/update' : 'UserController.updateUser',
   'delete /user/delete/:id' : 'UserController.deleteUser',
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraById',

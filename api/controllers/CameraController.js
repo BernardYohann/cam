@@ -14,7 +14,9 @@ module.exports = {
         var identifier = req.param('id');
         Camera.findOne({
             id: identifier
-        }).exec(function (err, getCamera) {
+        })
+        .populate('owner')
+        .exec(function (err, getCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to get a camera by id', "error": err });
             return res.ok(getCamera);
         });
