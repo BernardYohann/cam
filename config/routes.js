@@ -48,7 +48,7 @@ module.exports.routes = {
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraById',
   'post /camera/add' : 'CameraController.addCamera',
-  'put /camera/update' : 'CameraController.addCamera',
+  'put /camera/update' : 'CameraController.updateCameraInfos',
   'delete /camera/delete/:id' : 'CameraController.deleteCamera',
   //CAMERA ACTIONS
   'put /camera/switchon/:id' : 'CameraController.switchOn',
