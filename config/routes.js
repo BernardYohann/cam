@@ -43,7 +43,7 @@ module.exports.routes = {
   //USER
   'get /user' : 'UserController.getAllUsers',
   'get /user/:id' : 'UserController.getUserById',
-  'post /user/update' : 'UserController.updateUser',
+  'put /user/update' : 'UserController.updateUser',
   'delete /user/delete/:id' : 'UserController.deleteUser',
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraById',
@@ -56,6 +56,7 @@ module.exports.routes = {
   'put /camera/turnleft/:id' : 'CameraController.turnLeft',
   'put /camera/turnright/:id' : 'CameraController.turnRight',
   //USERCAMERAROLE
+  'get /usercamerarole/:cameraid/:userid/role' : 'UserCameraRoleController.getRole',
   'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
   'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',

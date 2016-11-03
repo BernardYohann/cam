@@ -7,6 +7,22 @@
 
 module.exports = {
 	
+    //Voir ce que se passe si on a plusieurs roles pour un meme user et camera
+    getRole: function(req, res){
+        var camera = req.param('cameraid');
+        var user = req.param('userid');
+        UserCameraRole.findOne({
+            where: {
+                camera : camera,
+                user : user
+            }
+        })
+        .exec(function (err, getRole){
+            if (err) return res.serverError({ "state": 'Error when trying to get role for this camera and user', "error": err });
+            return res.ok(getRole);
+        });
+    },
+
     // Récupérer les utilisateurs qui ont les droits sur une caméra et leurs roles GET /camera/:id/users
     getCameraUsers: function (req, res) {
         var camera = req.param('cameraid');

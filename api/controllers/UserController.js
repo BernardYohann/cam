@@ -33,9 +33,9 @@ module.exports = {
         var firstname = req.param('firstname');
         var lastname = req.param('lastname');
         var password = req.param('password');
-
+        
         if (!id ) return res.serverError({ "state": "Missing id" }); 
-        if (password == null)
+        if (password == null || !password)
         {
             User.update(
                 {id: id}, 
