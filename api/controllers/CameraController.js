@@ -35,8 +35,18 @@ module.exports = {
             switchOn: false,
             owner: userid
         }).exec(function (err, cameraCreated) {
-            if (err) return res.serverError({ "state": 'Error when trying add connected object on database', "error": err });
-            return res.ok(cameraCreated);
+            if (err) return res.serverError({ "state": 'Error when trying add new camera', "error": err });
+            if(res.ok(cameraCreated))
+            {
+                UserCameraRole.create({
+                    user: userid,
+                    camera: cameraCreated.id,
+                    role: 1 //role admin
+                }).exec(function (err, userCameraRoleCreated) {
+                    if (err) return res.serverError({ "state": 'Error when trying add a new user camera role', "error": err });
+                });
+            }
+            return cameraCreated;
         });
     },
 
@@ -45,9 +55,15 @@ module.exports = {
         var id = req.param('id')
 
         if (!id ) return res.serverError({ "state": "Missing id" }); 
-        Camera.destroy(id = id).exec(function (err, cameraDestroyed) {
-            if (err) return res.serverError({ "state": 'Error when trying to delete this camera on database', "error": err });
-            return res.ok();
+            Camera.destroy(id = id)
+            .exec(function (err, cameraDestroyed) {
+                if (err) return res.serverError({ "state": 'Error when trying to delete this camera on database', "error": err });
+                if(res.ok(cameraDestroyed)){
+                    UserCameraRole.destroy(camera = id).exec(function (err, userCameraRoleDestroyed) {
+                    if (err) return res.serverError({ "state": 'Error when trying destroy user camera role', "error": err });
+                });
+            }
+            return cameraDestroyed;
         });
     },
 
