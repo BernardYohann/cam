@@ -26,13 +26,15 @@ module.exports = {
     addCamera : function (req, res) {  
         var name = req.param('name');
         var uid = req.param('uid');
+        var userid = req.param('userid');
 
         if (!name || !uid) return res.serverError({ "state": "Parameters error" }); 
 
         Camera.create({
             name: name,
             uid: uid,
-            switchOn: false
+            switchOn: false,
+            owner: userid
         }).exec(function (err, cameraCreated) {
             if (err) return res.serverError({ "state": 'Error when trying add connected object on database', "error": err });
             return res.ok(cameraCreated);
