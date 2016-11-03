@@ -56,6 +56,7 @@ module.exports.routes = {
   'put /camera/turnleft/:id' : 'CameraController.turnLeft',
   'put /camera/turnright/:id' : 'CameraController.turnRight',
   //USERCAMERAROLE
+  'get /usercamerarole/:cameraid/:userid/role' : 'UserCameraRoleController.getRole',
   'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
   'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
