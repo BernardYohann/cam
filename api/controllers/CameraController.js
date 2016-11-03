@@ -15,8 +15,7 @@ module.exports = {
         Camera.findOne({
             id: identifier
         })
-        .populate('owner')
-        .exec(function (err, getCamera) {
+        .populate('owner').exec(function (err, getCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to get a camera by id', "error": err });
             return res.ok(getCamera);
         });
@@ -71,14 +70,12 @@ module.exports = {
     //Update une camera /PUT /camera/update/:id
     updateCameraInfos: function(req, res){
         var id = req.param('id');
-        var newUid = req.param('uid');
         var newName = req.param('name');
 
         if (!id ) return res.serverError({ "state": "Missing id" }); 
         Camera.update(
             {id: id}, 
             {
-                uid: newUid,
                 name: newName
             })
         .exec(function (err, updatedCamera) {
