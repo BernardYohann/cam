@@ -71,6 +71,8 @@ module.exports.routes = {
   'get /log/camera/:id' : 'LogController.getLogByCameraId',
   'get /log/user/:id' : 'LogController.getLogByUserId',
   'post /log/add' : 'LogController.addLog',
+  //CAMERAUSER
+  'get /camera/owner/:id' : 'CameraUserController.getCamerasByOwnerId',
 
   /***************************************************************************
   *                                                                          *
