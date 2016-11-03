@@ -50,7 +50,7 @@ module.exports = {
         });
     },
 
-    //Supprime une camera   /POST /camera/delete/:id
+    //Supprime une camera   /DELETE /camera/delete/:id
     deleteCamera : function(req, res){
         var id = req.param('id')
 
