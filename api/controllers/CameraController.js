@@ -89,34 +89,26 @@ module.exports = {
 
 
      //Actions methods
-     turnLeft: function(value, next){
+     turn: function(value, next){
        //TODO
        return next();
      },
-     turnRight: function(value, next){
-       //TODO
-       return next();
-     },
-     switchOn: function(req, res){
+     switch: function(req,res){
+         var state;
+         if(req.param('state') == "on"){
+             state = true;
+         }
+         else if(req.param('state') == "off"){
+             state = false;
+         }
+         
          var id = req.param('id');
          if (!id ) return res.serverError({ "state": "Missing id" }); 
          Camera.update(
              {id: id},
-             {switchOn: 1})
+             {switchOn: state})
         .exec(function (err, updatedCamera) {
-            if (err) return res.serverError({ "state": 'Error when trying to switch on the camera', "error": err });
-            Camera.publishUpdate(id,  updatedCamera);
-            return res.ok(updatedCamera);
-        });
-     },
-     switchOff: function(req, res){
-         var id = req.param('id');
-         if (!id ) return res.serverError({ "state": "Missing id" }); 
-         Camera.update(
-             {id: id}, 
-             {switchOn: 0})
-        .exec(function (err, updatedCamera) {
-            if (err) return res.serverError({ "state": 'Error when trying to switch off the camera', "error": err });
+            if (err) return res.serverError({ "state": 'Error when trying to change camera state', "error": err });
             Camera.publishUpdate(id,  updatedCamera);
             return res.ok(updatedCamera);
         });

@@ -51,10 +51,8 @@ module.exports.routes = {
   'put /camera/update' : 'CameraController.updateCameraInfos',
   'delete /camera/delete/:id' : 'CameraController.deleteCamera',
   //CAMERA ACTIONS
-  'put /camera/switchon/:id' : 'CameraController.switchOn',
-  'put /camera/switchoff/:id' : 'CameraController.switchOff',
-  'put /camera/turnleft/:id' : 'CameraController.turnLeft',
-  'put /camera/turnright/:id' : 'CameraController.turnRight',
+  'put /camera/switch/:id/:state' : 'CameraController.switch',
+  'put /camera/turn/:id' : 'CameraController.turn',
   //USERCAMERAROLE
   'get /usercamerarole/:cameraid/:userid/role' : 'UserCameraRoleController.getRole',
   'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
