@@ -9,14 +9,21 @@ module.exports = {
 	
     //Voir ce que se passe si on a plusieurs roles pour un meme user et camera
     getRole: function(req, res){
-        var camera = req.param('cameraid');
-        var user = req.param('userid');
+        // var camera = req.param('cameraid');
+        // var user = req.param('userid');
+        // UserCameraRole.findOne({
+        //     where: {
+        //         camera : camera,
+        //         user : user
+        //     }
+        // })
+
+        var ucrid = req.param('id');
         UserCameraRole.findOne({
             where: {
-                camera : camera,
-                user : user
+                id : ucrid
             }
-        })
+        }).populate('user').populate('role')
         .exec(function (err, getRole){
             if (err) return res.serverError({ "state": 'Error when trying to get role for this camera and user', "error": err });
             return res.ok(getRole);
@@ -30,7 +37,7 @@ module.exports = {
             where: {
                 camera : camera
             }
-        }).populate('user').populate('camera')
+        }).populate('user').populate('role')
         .exec(function (err, getCameraUsers){
             if (err) return res.serverError({ "state": 'Error when trying to get users for this camera', "error": err });
             return res.ok(getCameraUsers);
@@ -84,16 +91,12 @@ module.exports = {
     //Update un UserCameraRole POST /usercamerarole/update
     updateUserCameraRole: function(req, res){
         var id = req.param('id');
-        var newUser = req.param('user');
-        var newCamera = req.param('camera');
         var newRole = req.param('role');
 
         if (!id ) return res.serverError({ "state": "Missing id" }); 
         UserCameraRole.update(
             {id: id}, 
             {
-                user: newUser,
-                camera: newCamera,
                 role: newRole
             })
         .exec(function (err, updatedUcr) {

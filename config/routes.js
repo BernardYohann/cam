@@ -54,11 +54,11 @@ module.exports.routes = {
   'put /camera/switch/:id/:state' : 'CameraController.switch',
   'put /camera/turn/:id' : 'CameraController.turn',
   //USERCAMERAROLE
-  'get /usercamerarole/:cameraid/:userid/role' : 'UserCameraRoleController.getRole',
+  'get /usercamerarole/:id/role' : 'UserCameraRoleController.getRole',
   'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
   'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
-  'put /usercamerarole/update/:id' : 'UserCameraRoleController.addUserCameraRole',
+  'put /usercamerarole/update' : 'UserCameraRoleController.updateUserCameraRole',
   'delete /usercamerarole/delete/:id' : 'UserCameraRoleController.deleteUserCameraRole',
   //ROLE
   'get /role' : 'RoleController.getAllRoles',
