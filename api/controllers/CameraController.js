@@ -15,9 +15,12 @@ module.exports = {
         Camera.findOne({
             id: identifier
         })
-        .populate('owner').exec(function (err, getCamera) {
+        .populate('owner').exec(function (err, camera) {
             if (err) return res.serverError({ "state": 'Error when trying to get a camera by id', "error": err });
-            return res.ok(getCamera);
+            var ids = []
+            ids[0] = camera.id
+            Camera.subscribe(req, ids);
+            return res.ok(camera);
         });
     },
 
@@ -102,6 +105,7 @@ module.exports = {
              {switchOn: 1})
         .exec(function (err, updatedCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to switch on the camera', "error": err });
+            Camera.publishUpdate(id,  updatedCamera);
             return res.ok(updatedCamera);
         });
      },
@@ -113,8 +117,11 @@ module.exports = {
              {switchOn: 0})
         .exec(function (err, updatedCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to switch off the camera', "error": err });
+            Camera.publishUpdate(id,  updatedCamera);
             return res.ok(updatedCamera);
         });
      }
+
+     //
 };
 
