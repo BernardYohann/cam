@@ -16,7 +16,6 @@ module.exports = {
       },
       name: {
         type: 'string',
-        unique: true,
         required: true
       },
       switchOn: {
@@ -26,7 +25,8 @@ module.exports = {
         type: 'string'
       },
       owner: {
-        model: 'user'
+        model: 'user',
+        required: true
       },
       userCameraRoles: {
           collection: 'usercamerarole',

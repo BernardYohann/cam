@@ -27,15 +27,15 @@ module.exports = {
         });
     },
 
-//TODO voir pourquoi ça ne fonctionne pas
+
     updateUser: function (req, res) {
         var id = req.param('id');
         var firstname = req.param('firstname');
         var lastname = req.param('lastname');
         var password = req.param('password');
-
+        
         if (!id ) return res.serverError({ "state": "Missing id" }); 
-        if (password == null)
+        if (password == null || !password)
         {
             User.update(
                 {id: id}, 
@@ -70,11 +70,13 @@ module.exports = {
 
         User.destroy(id = id).exec(function (err, userDestroyed) {
             if (err) return res.serverError({ "state": 'Error when trying to delete this user', "error": err });
-            return res.ok();
+            if(res.ok(userDestroyed)){
+                UserCameraRole.destroy(user = id).exec(function (err, userCameraRoleDestroyed) {
+                    if (err) return res.serverError({ "state": 'Error when trying destroy user camera role', "error": err });
+                });
+                return res.ok();
+            }
         });
     },
 
-    // addUser: function (req, res) {
-    //     return res.send('');
-    // },
 };

@@ -43,23 +43,22 @@ module.exports.routes = {
   //USER
   'get /user' : 'UserController.getAllUsers',
   'get /user/:id' : 'UserController.getUserById',
-  'post /user/update' : 'UserController.updateUser',
+  'put /user/update' : 'UserController.updateUser',
   'delete /user/delete/:id' : 'UserController.deleteUser',
   //CAMERA
   'get /camera/:id' : 'CameraController.getCameraById',
   'post /camera/add' : 'CameraController.addCamera',
-  'put /camera/update' : 'CameraController.addCamera',
+  'put /camera/update' : 'CameraController.updateCameraInfos',
   'delete /camera/delete/:id' : 'CameraController.deleteCamera',
   //CAMERA ACTIONS
-  'put /camera/switchon/:id' : 'CameraController.switchOn',
-  'put /camera/switchoff/:id' : 'CameraController.switchOff',
-  'put /camera/turnleft/:id' : 'CameraController.turnLeft',
-  'put /camera/turnright/:id' : 'CameraController.turnRight',
+  'put /camera/switch/:id/:state' : 'CameraController.switch',
+  'put /camera/turn/:id' : 'CameraController.turn',
   //USERCAMERAROLE
+  'get /usercamerarole/:id/role' : 'UserCameraRoleController.getRole',
   'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
   'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
   'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
-  'put /usercamerarole/update/:id' : 'UserCameraRoleController.addUserCameraRole',
+  'put /usercamerarole/update' : 'UserCameraRoleController.updateUserCameraRole',
   'delete /usercamerarole/delete/:id' : 'UserCameraRoleController.deleteUserCameraRole',
   //ROLE
   'get /role' : 'RoleController.getAllRoles',
@@ -70,6 +69,8 @@ module.exports.routes = {
   'get /log/camera/:id' : 'LogController.getLogByCameraId',
   'get /log/user/:id' : 'LogController.getLogByUserId',
   'post /log/add' : 'LogController.addLog',
+  //CAMERAUSER
+  'get /camera/owner/:id' : 'CameraUserController.getCamerasByOwnerId',
 
   /***************************************************************************
   *                                                                          *
