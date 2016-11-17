@@ -17,6 +17,7 @@ module.exports = {
         }).populate('user').populate('role')
         .exec(function (err, getRole){
             if (err) return res.serverError({ "state": 'Error when trying to get role for this camera and user', "error": err });
+            UserCameraRole.subscribe(req, ucrid);
             return res.ok(getRole);
         });
     },
@@ -31,6 +32,17 @@ module.exports = {
         }).populate('user').populate('role')
         .exec(function (err, getCameraUsers){
             if (err) return res.serverError({ "state": 'Error when trying to get users for this camera', "error": err });
+
+            var ids = [];
+            var key, count = 0;
+            for(key in getCameraUsers) {
+                if(getCameraUsers.hasOwnProperty(key)) {
+                    ids[count] = getCameraUsers[count].id;
+                    count++;
+                }
+            }
+            UserCameraRole.subscribe(req, ids);
+
             return res.ok(getCameraUsers);
         });
     },
@@ -102,7 +114,16 @@ module.exports = {
             })
         .exec(function (err, updatedUcr) {
             if (err) return res.serverError({ "state": 'Error when trying to update the UserCameraRole', "error": err });
-            return res.ok(updatedUcr);
+            UserCameraRole.findOne({
+                where: {
+                    id : id
+                }
+            }).populate('user').populate('role')
+            .exec(function (err, getUpdatedRole){
+                if (err) return res.serverError({ "state": 'Error when trying to get role for this camera and user', "error": err });
+                UserCameraRole.publishUpdate(id, getUpdatedRole);
+            return res.ok(getUpdatedRole);
+            });
         });
     },
 
