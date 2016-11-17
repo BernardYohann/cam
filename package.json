@@ -7,6 +7,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "ejs": "2.3.4",
+    "express": "~4.0",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-coffee": "1.0.0",
@@ -20,6 +21,7 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "johnny-five": "latest",
     "jsonwebtoken": "^7.1.9",
     "passport": "^0.3.2",
     "passport-jwt": "^2.1.0",
@@ -28,10 +30,8 @@
     "sails": "~0.12.7",
     "sails-disk": "^0.10.10",
     "sails-mysql": "^0.11.5",
-    "express": "~4.0",
-    "socket.io":">= 1.0.2",
-    "johnny-five": "latest",
-    "serialport": "1.4.10"
+    "serialport": "1.4.10",
+    "socket.io": "^1.5.1"
   },
   "scripts": {
     "debug": "node debug app.js",

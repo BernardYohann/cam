@@ -9,15 +9,6 @@ module.exports = {
 	
     //Voir ce que se passe si on a plusieurs roles pour un meme user et camera
     getRole: function(req, res){
-        // var camera = req.param('cameraid');
-        // var user = req.param('userid');
-        // UserCameraRole.findOne({
-        //     where: {
-        //         camera : camera,
-        //         user : user
-        //     }
-        // })
-
         var ucrid = req.param('id');
         UserCameraRole.findOne({
             where: {
@@ -44,7 +35,7 @@ module.exports = {
         });
     },
 
-    //Récupérer les caméras sur lequel un utilisateur à les droits GET /cameras
+    //Récupérer les caméras sur lequel un utilisateur à les droits GET /usercamerarole/userid/cameras
     getUserCameras: function (req, res) {
         var user = req.param('userid');
         UserCameraRole.find({
@@ -54,6 +45,16 @@ module.exports = {
         }).populate('camera').populate('user')
         .exec(function (err, getUserCameras){
             if (err) return res.serverError({ "state": 'Error when trying to get cameras for this user', "error": err });
+
+            var ids = [];
+            var key, count = 0;
+            for(key in getUserCameras) {
+                if(getUserCameras.hasOwnProperty(key)) {
+                    ids[count] = getUserCameras[count].camera.id;
+                    count++;
+                }
+            }
+            Camera.subscribe(req, ids);
             return res.ok(getUserCameras);
         });
     },

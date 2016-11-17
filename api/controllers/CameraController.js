@@ -9,7 +9,7 @@ module.exports = {
 	
     ///CRUD methods
 
-    // Récupérer une caméra à partir de son uid GET /camera/uid
+    // Récupérer une caméra à partir de son uid GET /camera/id
     getCameraById: function (req, res) {
         var identifier = req.param('id');
         Camera.findOne({
@@ -49,6 +49,7 @@ module.exports = {
                     if (err) return res.serverError({ "state": 'Error when trying add a new user camera role', "error": err });
                 });
             }
+            Camera.publishCreate(cameraCreated);
             return cameraCreated;
         });
     },
@@ -66,6 +67,7 @@ module.exports = {
                     if (err) return res.serverError({ "state": 'Error when trying destroy user camera role', "error": err });
                 });
             }
+            Camera.publishDelete(id);
             return cameraDestroyed;
         });
     },
@@ -83,6 +85,7 @@ module.exports = {
             })
         .exec(function (err, updatedCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to update the camera', "error": err });
+            Camera.publishUpdate(id,  updatedCamera);
             return res.ok(updatedCamera);
         });
     },
@@ -93,6 +96,7 @@ module.exports = {
        //TODO
        return next();
      },
+     
      switch: function(req,res){
          var state;
          if(req.param('state') == "on"){
@@ -101,7 +105,7 @@ module.exports = {
          else if(req.param('state') == "off"){
              state = false;
          }
-         
+
          var id = req.param('id');
          if (!id ) return res.serverError({ "state": "Missing id" }); 
          Camera.update(
@@ -109,7 +113,7 @@ module.exports = {
              {switchOn: state})
         .exec(function (err, updatedCamera) {
             if (err) return res.serverError({ "state": 'Error when trying to change camera state', "error": err });
-            Camera.publishUpdate(id,  updatedCamera);
+            Camera.publishUpdate(id, updatedCamera);
             return res.ok(updatedCamera);
         });
      }
