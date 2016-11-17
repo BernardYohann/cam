@@ -66,7 +66,10 @@ module.exports = {
                     count++;
                 }
             }
+
             Camera.subscribe(req, ids);
+            Camera.watch(req);
+
             return res.ok(getUserCameras);
         });
     },
