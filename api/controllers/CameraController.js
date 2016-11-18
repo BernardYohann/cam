@@ -68,21 +68,16 @@ module.exports = {
                     "error": err
                 });
                 if (res.ok(cameraDestroyed)) {
-                    UserCameraRole.destroy(camera = id).exec(function (err, userCameraRoleDestroyed) {
+                    Camera.publishDestroy(id);
+                    UserCameraRole.destroy({camera : id}).exec(function (err, ucrDestroyed) {
                         if (err) return res.serverError({
-                            "state": 'Error when trying destroy user camera role',
+                            "state": 'Error when trying to delete this UserCameraRole on database',
                             "error": err
                         });
+                        UserCameraRole.publishDestroy(ucrDestroyed);
                     });
                 }
-                Camera.publishDestroy(id);
-                UserCameraRole.destroy(camera = id).exec(function (err, ucrDestroyed) {
-                    if (err) return res.serverError({
-                        "state": 'Error when trying to delete this UserCameraRole on database',
-                        "error": err
-                    });
-                    UserCameraRole.publishDestroy(id);
-                });
+                
                 return cameraDestroyed;
             });
     },
