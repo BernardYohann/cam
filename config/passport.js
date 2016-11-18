@@ -39,7 +39,7 @@ function onLocalStrategyAuth(email, password, next) {
             if (!user) return next({
                 code: 'E_USER_NOT_FOUND',
                 message: 'email or password is wrong'
-            }, false, {} );
+            }, false, {});
 
             if (!SecurityService.comparePassword(password, user)) {
                 return next(null, user, {
@@ -49,7 +49,7 @@ function onLocalStrategyAuth(email, password, next) {
             }
             return next(null, user, {});
         });
-    
+
 }
 
 function onJwtStrategyAuth(payload, next) {

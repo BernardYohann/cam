@@ -7,20 +7,20 @@
 
 module.exports = {
 
-  attributes: {
-        camera : {
-            model : 'camera'
+    attributes: {
+        camera: {
+            model: 'camera'
         },
-        user : {
-            model : 'user'
+        user: {
+            model: 'user'
         },
-        event : {
-            type : 'string'
+        event: {
+            type: 'string'
         },
-        toJson: function(){
+        toJson: function () {
             var obj = this.toObject();
             return obj;
-         }
+        }
     }
 };
 

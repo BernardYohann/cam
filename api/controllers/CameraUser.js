@@ -4,12 +4,12 @@ module.exports = {
         var id = req.param('id');
         Camera.find({
             where: {
-                owner :  id
+                owner: id
             }
         }).exec(function (err, cameras) {
-            if(cameras.length > 0){
+            if (cameras.length > 0) {
                 ids = [];
-                for(i=0; i < cameras.length; i++)
+                for (i = 0; i < cameras.length; i++)
                     ids.push(cameras[i].id);
 
                 UserCameraRole.find({
@@ -17,13 +17,16 @@ module.exports = {
                         camera: ids
                     }
                 }).populate('user').populate('role')
-                    .exec(function (err, userCameraRole){
-                        if (err) return res.serverError({ "state": 'Error when trying to get users and roles of owner camera ', "error": err });
+                    .exec(function (err, userCameraRole) {
+                        if (err) return res.serverError({
+                            "state": 'Error when trying to get users and roles of owner camera ',
+                            "error": err
+                        });
                         return res.ok(userCameraRole);
                     });
             }
 
-            if (err ) return res.serverError({ "state": 'Error when trying to get owner camera by id', "error": err });
+            if (err) return res.serverError({"state": 'Error when trying to get owner camera by id', "error": err});
 // return res.ok('nothing to show');
         });
     },
