@@ -42,6 +42,7 @@ module.exports = {
                 }
             }
             UserCameraRole.subscribe(req, ids);
+            UserCameraRole.watch(req);
 
             return res.ok(getCameraUsers);
         });
@@ -88,6 +89,14 @@ module.exports = {
             role: roleId
         }).exec(function (err, userCameraRoleCreated) {
             if (err) return res.serverError({ "state": 'Error when trying add a new user camera role', "error": err });
+            UserCameraRole.find({
+                user: userId,
+                camera: cameraId,
+                role: roleId
+            }).populate('user').populate('role')
+            .exec(function (err, ucrFull){
+                UserCameraRole.publishCreate(ucrFull);
+            })
             return res.ok(userCameraRoleCreated);
         });
     },
@@ -99,6 +108,7 @@ module.exports = {
         if (!id ) return res.serverError({ "state": "Missing id" }); 
         UserCameraRole.destroy(id = id).exec(function (err, ucrDestroyed) {
             if (err) return res.serverError({ "state": 'Error when trying to delete this UserCameraRole on database', "error": err });
+            UserCameraRole.publishDestroy(id);
             return res.ok();
         });
 
