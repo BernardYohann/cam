@@ -22,64 +22,64 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+     * etc. depending on your default view engine) your home page.              *
+     *                                                                          *
+     * (Alternatively, remove this and add an `index.html` file in your         *
+     * `assets` directory)                                                      *
+     *                                                                          *
+     ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+    '/': {
+        view: 'homepage'
+    },
 
-  //AUTH
-  'post /login' : 'AuthController.login',
-  'post /register' : 'AuthController.register',
-  'get /logout' : 'AuthController.logout',
-  //USER
-  'get /user' : 'UserController.getAllUsers',
-  'get /user/:id' : 'UserController.getUserById',
-  'put /user/update' : 'UserController.updateUser',
-  'delete /user/delete/:id' : 'UserController.deleteUser',
-  //CAMERA
-  'get /camera/:id' : 'CameraController.getCameraById',
-  'post /camera/add' : 'CameraController.addCamera',
-  'put /camera/update' : 'CameraController.updateCameraInfos',
-  'delete /camera/delete/:id' : 'CameraController.deleteCamera',
-  //CAMERA ACTIONS
-  'put /camera/switch/:id/:state' : 'CameraController.switch',
-  'put /camera/turn/:id' : 'CameraController.turn',
-  //USERCAMERAROLE
-  'get /usercamerarole/:id/role' : 'UserCameraRoleController.getRole',
-  'get /usercamerarole/:cameraid/users' : 'UserCameraRoleController.getCameraUsers',
-  'get /usercamerarole/:userid/cameras' : 'UserCameraRoleController.getUserCameras',
-  'post /usercamerarole/add' : 'UserCameraRoleController.addUserCameraRole',
-  'put /usercamerarole/update' : 'UserCameraRoleController.updateUserCameraRole',
-  'delete /usercamerarole/delete/:id' : 'UserCameraRoleController.deleteUserCameraRole',
-  //ROLE
-  'get /role' : 'RoleController.getAllRoles',
-  'get /role/:id' : 'RoleController.getRoleById',
-  'put /role/update' : 'RoleController.updateRole',
-  //LOGS
-  'get /log' : 'LogController.getAllLogs',
-  'get /log/camera/:id' : 'LogController.getLogByCameraId',
-  'get /log/user/:id' : 'LogController.getLogByUserId',
-  'post /log/add' : 'LogController.addLog',
-  //CAMERAUSER
-  'get /camera/owner/:id' : 'CameraUserController.getCamerasByOwnerId',
+    //AUTH
+    'post /login': 'AuthController.login',
+    'post /register': 'AuthController.register',
+    'get /logout': 'AuthController.logout',
+    //USER
+    'get /user': 'UserController.getAllUsers',
+    'get /user/:id': 'UserController.getUserById',
+    'put /user/update': 'UserController.updateUser',
+    'delete /user/delete/:id': 'UserController.deleteUser',
+    //CAMERA
+    'get /camera/:id': 'CameraController.getCameraById',
+    'post /camera/add': 'CameraController.addCamera',
+    'put /camera/update': 'CameraController.updateCameraInfos',
+    'delete /camera/delete/:id': 'CameraController.deleteCamera',
+    //CAMERA ACTIONS
+    'put /camera/switch/:id/:state': 'CameraController.switch',
+    'put /camera/turn/:id': 'CameraController.turn',
+    //USERCAMERAROLE
+    'get /usercamerarole/:id/role': 'UserCameraRoleController.getRole',
+    'get /usercamerarole/:cameraid/users': 'UserCameraRoleController.getCameraUsers',
+    'get /usercamerarole/:userid/cameras': 'UserCameraRoleController.getUserCameras',
+    'post /usercamerarole/add': 'UserCameraRoleController.addUserCameraRole',
+    'put /usercamerarole/update': 'UserCameraRoleController.updateUserCameraRole',
+    'delete /usercamerarole/delete/:id': 'UserCameraRoleController.deleteUserCameraRole',
+    //ROLE
+    'get /role': 'RoleController.getAllRoles',
+    'get /role/:id': 'RoleController.getRoleById',
+    'put /role/update': 'RoleController.updateRole',
+    //LOGS
+    'get /log': 'LogController.getAllLogs',
+    'get /log/camera/:id': 'LogController.getLogByCameraId',
+    'get /log/user/:id': 'LogController.getLogByUserId',
+    'post /log/add': 'LogController.addLog',
+    //CAMERAUSER
+    'get /camera/owner/:id': 'CameraUserController.getCamerasByOwnerId',
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Custom routes here...                                                    *
+     *                                                                          *
+     * If a request to a URL doesn't match any of the custom routes above, it   *
+     * is matched against Sails route blueprints. See `config/blueprints.js`    *
+     * for configuration options and examples.                                  *
+     *                                                                          *
+     ***************************************************************************/
 
 };

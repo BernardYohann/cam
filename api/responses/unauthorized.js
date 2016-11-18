@@ -14,7 +14,7 @@
  *          - pass string to render specified view
  */
 
-module.exports = function unauthorized (data, options) {
+module.exports = function unauthorized(data, options) {
 
     // Get access to `req`, `res`, & `sails`
     var req = this.req;
@@ -34,7 +34,7 @@ module.exports = function unauthorized (data, options) {
 
     // If second argument is a string, we take that to mean it refers to a view.
     // If it was omitted, use an empty object (`{}`)
-    options = (typeof options === 'string') ? { view: options } : options || {};
+    options = (typeof options === 'string') ? {view: options} : options || {};
 
     // Attempt to prettify data for views, if it's a non-error object
     var viewData = data;
@@ -42,7 +42,7 @@ module.exports = function unauthorized (data, options) {
         try {
             viewData = require('util').inspect(data, {depth: null});
         }
-        catch(e) {
+        catch (e) {
             viewData = undefined;
         }
     }
@@ -51,12 +51,12 @@ module.exports = function unauthorized (data, options) {
     // Otherwise try to guess an appropriate view, or if that doesn't
     // work, just send JSON.
     if (options.view) {
-        return res.view(options.view, { data: viewData, title: 'Unauthorized' });
+        return res.view(options.view, {data: viewData, title: 'Unauthorized'});
     }
 
     // If no second argument provided, try to serve the implied view,
     // but fall back to sending JSON(P) if no view can be inferred.
-    else return res.guessView({ data: viewData, title: 'Unauthorized' }, function couldNotGuessView () {
+    else return res.guessView({data: viewData, title: 'Unauthorized'}, function couldNotGuessView() {
         return res.jsonx(data);
     });
 

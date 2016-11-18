@@ -7,26 +7,26 @@
 
 module.exports = {
 
-  attributes: {
-  	name: {
-  		type: 'string'
-  	},
-  	canView: {
-  		type: 'boolean'
-  	},
-  	canTurn: {
-  		type: 'boolean'
-  	},
-  	canSwitch: {
-  		type: 'boolean'
-  	},
-  	canManage: {
-  		type: 'boolean'
-  	},
+    attributes: {
+        name: {
+            type: 'string'
+        },
+        canView: {
+            type: 'boolean'
+        },
+        canTurn: {
+            type: 'boolean'
+        },
+        canSwitch: {
+            type: 'boolean'
+        },
+        canManage: {
+            type: 'boolean'
+        },
 
-  	toJson: function(){
-  		var obj = this.toObject();
-  		return obj;
-  	}
-  }
+        toJson: function () {
+            var obj = this.toObject();
+            return obj;
+        }
+    }
 };

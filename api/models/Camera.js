@@ -7,31 +7,31 @@
 
 module.exports = {
 
-  //members
-  attributes: {
-      uid: {
-        type: 'string',
-        unique: true,
-        required: true
-      },
-      name: {
-        type: 'string',
-        required: true
-      },
-      switchOn: {
-        type: 'boolean'
-      },
-      socket: {
-        type: 'string'
-      },
-      owner: {
-        model: 'user',
-        required: true
-      },
-      userCameraRoles: {
-          collection: 'usercamerarole',
-          via: 'camera'
-      }
-  }
+    //members
+    attributes: {
+        uid: {
+            type: 'string',
+            unique: true,
+            required: true
+        },
+        name: {
+            type: 'string',
+            required: true
+        },
+        switchOn: {
+            type: 'boolean'
+        },
+        socket: {
+            type: 'string'
+        },
+        owner: {
+            model: 'user',
+            required: true
+        },
+        userCameraRoles: {
+            collection: 'usercamerarole',
+            via: 'camera'
+        }
+    }
 };
 

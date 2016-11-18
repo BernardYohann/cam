@@ -17,7 +17,7 @@ module.exports = {
         role: {
             model: 'role'
         },
-        toJson: function(){
+        toJson: function () {
             var obj = this.toObject();
             return obj;
         }

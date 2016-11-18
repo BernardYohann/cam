@@ -9,10 +9,10 @@
 
 module.exports = {
     attributes: {
-        firstname:{
+        firstname: {
             type: 'string'
         },
-        lastname:{
+        lastname: {
             type: 'string'
         },
         email: {
@@ -31,17 +31,17 @@ module.exports = {
         updateAt: {
             type: 'datetime'
         },
-        toJson: function(){
+        toJson: function () {
             var obj = this.toObject();
             delete obj.password;
             return obj;
         }
     },
-    beforeUpdate: function(value, next){
-            SecurityService.hashPassword(value);
+    beforeUpdate: function (value, next) {
+        SecurityService.hashPassword(value);
         return next();
     },
-    beforeCreate: function(value, next){
+    beforeCreate: function (value, next) {
         SecurityService.hashPassword(value);
         return next();
     }

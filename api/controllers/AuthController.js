@@ -38,7 +38,7 @@ module.exports = {
             .catch(res.serverError);
     },
 
-    logout: function (req, res){
+    logout: function (req, res) {
 
     }
 };
