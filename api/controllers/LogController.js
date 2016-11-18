@@ -11,6 +11,7 @@ module.exports = {
 	getAllLogs: function(req,res){
         Log.find().limit(100).populate('camera').populate('user').exec(function (err, logs) {
             if (err) return res.serverError({ "state": 'Error when trying to get the 100 last logs', "error": err });
+
             return res.ok(logs);
         });
     },
@@ -23,6 +24,17 @@ module.exports = {
         }).limit(50).populate('camera').populate('user')
         .exec(function (err, logs) {
             if (err) return res.serverError({ "state": 'Error when trying to get the logs', "error": err });
+            var ids = [];
+            var count=0;
+            for(key in logs) {
+                if(logs.hasOwnProperty(key)) {
+                    ids[count] = logs[count].id;
+                    count++;
+                }
+            }
+            Log.subscribe(req, ids);
+            Log.watch(req);
+
             return res.ok(logs);
         });
     },
@@ -35,6 +47,17 @@ module.exports = {
         }).limit(50).populate('camera').populate('user')
         .exec(function (err, logs) {
             if (err) return res.serverError({ "state": 'Error when trying to get the logs', "error": err });
+            var ids = [];
+            var count=0;
+            for(key in logs) {
+                if(logs.hasOwnProperty(key)) {
+                    ids[count] = logs[count].id;
+                    count++;
+                }
+            }
+            Log.subscribe(req, ids);
+            Log.watch(req);
+
             return res.ok(logs);
         });
     },
@@ -45,6 +68,14 @@ module.exports = {
          Log.create(_.omit(req.allParams(), 'id'))
             .exec(function (err, logCreated) {
             if (err) return res.serverError({ "state": 'Error when creating new log', "error": err });
+
+            Log.find({
+                id : logCreated.id
+            }).populate('user')
+            .exec(function (err, logUser){
+                Log.publishCreate(logUser);
+            })
+            
             return res.ok(logCreated);
         });
     },
